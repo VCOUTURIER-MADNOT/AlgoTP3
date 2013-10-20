@@ -2,8 +2,8 @@ CC = gcc -Wall -O3 -ansi -pedantic
 
 all: main clean
 
-main: main.o cellule.o liste.o outilsListe.o
-	$(CC) -o main main.o cellule.o liste.o outilsListe.o
+main: main.o cellule.o liste.o outilsListe.o tableHachage.o
+	$(CC) -o main main.o cellule.o liste.o outilsListe.o tableHachage.o -lm
 
 main.o: main.c
 	$(CC) -o main.o -c main.c
@@ -18,7 +18,8 @@ outilsListe.o: outilsListe.c outilsListe.h
 	$(CC) -o outilsListe.o -c outilsListe.c
 
 tableHachage.o: tableHachage.c tableHachage.h
-	$(CC) -o tableHachage.o -c tableHachage.h
+	$(CC) -o tableHachage.o -c tableHachage.c
+
 clean:
 	rm -rf *.o
 			
