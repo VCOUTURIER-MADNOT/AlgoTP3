@@ -43,7 +43,7 @@ int hachage(int _k, const HashTable * _hashTable)
 
 void insererHachage(Cell * _cell, HashTable * _hashTable)
 {
-	/* TODO */
+	/* TODO Z*/
 }
 
 void rechercherHachage(char * _word, HashTable * _hashTable)
