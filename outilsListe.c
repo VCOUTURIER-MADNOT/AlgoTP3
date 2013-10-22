@@ -102,6 +102,7 @@ int lectureFichier(List * _list, const char * _fileName)
 	char * word = (char *)malloc(sizeof(char) * 50);
 	Cell * cell = NULL;
 
+	_list = creerListe();
 	if( (file = fopen(_fileName, "r")) == NULL)
 		return 0;
 

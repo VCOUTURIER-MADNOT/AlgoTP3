@@ -40,7 +40,8 @@ Cell * rechercher(List * _list, char * _word)
 {
 	printf("Recherche du mot \n");
 	Cell * cell = NULL;
-
+	if(_list == NULL)
+		printf("NULL\n");
 	cell = _list->cell;
 	while(cell != NULL && strcmp(cell->word, _word)) /*strcmp renvoie 0 si égale, <0 si arg1<arg2, >0 si arg1>arg2*/
 	{

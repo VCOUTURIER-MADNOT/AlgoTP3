@@ -2,13 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "liste.h"
 
 HashTable * creerTableHachage(int _size)
 {
+	int i;
 	HashTable * hashTable = NULL;
 
 	hashTable = (HashTable *)malloc(sizeof(HashTable));
-	hashTable->array = (List *) malloc(sizeof(List) * _size);
+	hashTable->array = (List **) malloc(sizeof(List*) * _size);
+	for(i = 0; i < _size; i++)
+	{
+		hashTable->array[i] = creerListe();
+	}
+
 	hashTable->size = _size;
 
 	return hashTable;
@@ -16,16 +23,21 @@ HashTable * creerTableHachage(int _size)
 
 void detruireTableHachage(HashTable ** _hashTable)
 {
+	int i;
+	for (i = 0; i < (*_hashTable)->size; ++i)
+	{
+		detruireListe(&(*_hashTable)->array[i]);
+	}
 	free((*_hashTable)->array);
 	free(_hashTable);
 }
 
-int convertirChEntier(const char * _word)
+long convertirChEntier(const char * _word)
 {
-	int i, j, res, c = 0;
+	int i, j, c = 0;
 
 	j = 0;
-	res = 0;
+	long res = 0;
 
 	for(i = strlen(_word)-1; i >= 0; i--, j++)
 	{
@@ -36,22 +48,33 @@ int convertirChEntier(const char * _word)
 	return res;
 }
 
-int hachage(int _k, const HashTable * _hashTable)
+int hachage(long _k, const HashTable * _hashTable)
 {
 	return _k % _hashTable->size;
 }
 
-void insererHachage(Cell * _cell, HashTable * _hashTable)
+void insererHachage(HashTable * _hashTable, Cell * _cell)
 {
-	/* TODO Z*/
+	List ** array = _hashTable->array;
+	int key = hachage(convertirChEntier(_cell->word), _hashTable);
+	inserer( array[key], _cell);
 }
 
-void rechercherHachage(char * _word, HashTable * _hashTable)
+Cell * rechercherHachage(HashTable * _hashTable, char * _word)
 {
-	/* TODO */
+	Cell * cell = NULL;
+	int key = 0;
+
+	key = hachage(convertirChEntier(_word), _hashTable);
+	cell = rechercher(_hashTable->array[key], _word);
+	
+	return cell;
 }
 
-void supprimerHachage(Cell * _cell, HashTable * _hashTable)
+void supprimerHachage(HashTable * _hashTable, Cell * _cell)
 {
-	/* TODO */
+	int key = 0;
+
+	key = hachage(convertirChEntier(_cell->word), _hashTable);
+	supprimer(_hashTable->array[key], _cell);
 }
