@@ -7,9 +7,9 @@
 
 int lectureFichierTableHachage(HashTable ** _hashTable, const char * _fileName)
 {
-	int i = 1;
+	int i = 1, totalCount = 0;
 	FILE * file = NULL;
-	char * word = (char *)malloc(sizeof(char) * 50);
+	char * word = (char *)malloc(sizeof(char) * 26);
 	Cell * cell = NULL;
 	(*_hashTable) = creerTableHachage(15);
 	if( (file = fopen(_fileName, "r")) == NULL)
@@ -18,15 +18,18 @@ int lectureFichierTableHachage(HashTable ** _hashTable, const char * _fileName)
 	while(i)
 	{
 		i = (fscanf(file, "%s", word) != EOF);
+		if (i != 0)
+		{
+			totalCount++;	
+		}
 		cell = rechercherHachage((*_hashTable), word);
 		if (cell == NULL){
-			cell = creerCellule(word, 50);
+			cell = creerCellule(word, 26);
 			insererHachage((*_hashTable), cell);
 		}
-		
 	}
 	fclose(file);
-	return 1;
+	return totalCount;
 }
 
 int compterTableHachage(HashTable * _hashTable)

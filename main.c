@@ -12,7 +12,7 @@ int main()
 	char nom[50];
 	List * list = NULL;
 	HashTable * hashTable = NULL;
-
+	int count;
 	list = (List*) malloc(sizeof(List));
 	hashTable = (HashTable*) malloc(sizeof(HashTable));
 
@@ -24,8 +24,9 @@ int main()
 	printf("\nDébut de la comparaison avec une liste");
 	
 
-	if(lectureFichier(&list, nom))
+	if((count = lectureFichier(&list, nom)))
 	{
+		printf("\nIl y a %d mot(s) dans ce fichier", count);
 		printf("\nIl y a %d mot(s) différents dans ce fichier \n", compterListe(list));
 	}
 
@@ -34,8 +35,9 @@ int main()
 	printf("\nDébut de la comparaison avec une table de hachage");
 	
 
-	if(lectureFichierTableHachage(&hashTable, nom))
+	if((count = lectureFichierTableHachage(&hashTable, nom)))
 	{
+		printf("\nIl y a %d mot(s) dans ce fichier", count);
 		printf("\nIl y a %d mot(s) différents dans ce fichier\n", compterTableHachage(hashTable));
 	}
 	

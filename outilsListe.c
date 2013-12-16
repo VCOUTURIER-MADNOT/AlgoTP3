@@ -31,7 +31,7 @@ int saisieListeUtil(List * _list)
 	int resultat = 1;
 
 	int choix = 0;
-	char * mot = (char*) malloc(sizeof(char) * 50);
+	char * mot = (char*) malloc(sizeof(char) * 26);
 	Cell * cell = NULL;
 
 	printf("\nBienvenue dans l'assistant de création d'une liste de mots (un mot est composé de moins de 50 caractères! \n");
@@ -97,9 +97,9 @@ int saisieListeUtil(List * _list)
 
 int lectureFichier(List ** _list, const char * _fileName)
 {
-	int i = 1;
+	int i = 1, totalCount = 0;
 	FILE * file = NULL;
-	char * word = (char *)malloc(sizeof(char) * 50);
+	char * word = (char *)malloc(sizeof(char) * 26);
 	Cell * cell = NULL;
 
 	(*_list) = creerListe();
@@ -109,14 +109,19 @@ int lectureFichier(List ** _list, const char * _fileName)
 	while(i)
 	{
 		i = (fscanf(file, "%s", word) != EOF);
+		if(i != 0)
+		{
+			totalCount++;
+		}
+
 		cell = rechercher((*_list), word);
 		if (cell == NULL){
-			cell = creerCellule(word, 50);
+			cell = creerCellule(word, 26);
 			inserer((*_list), cell);
 		}
 	}
 	fclose(file);
-	return 1;
+	return totalCount;
 }
 
 int compterListe(List * _list)
