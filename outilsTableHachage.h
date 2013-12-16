@@ -1,7 +1,7 @@
 #ifndef DEF_OUTILSTABLEHACHAGE
 #define DEF_OUTILSTABLEHACHAGE
 
-int lectureFichierTableHachage(HashTable * _hastTable, const char * _fileName);
-int compterHashTable(HashTable * _hastTable);
+int lectureFichierTableHachage(HashTable ** _hastTable, const char * _fileName);
+int compterTableHachage(HashTable * _hastTable);
 
 #endif

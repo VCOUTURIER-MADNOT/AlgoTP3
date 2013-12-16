@@ -10,9 +10,9 @@ typedef struct{
 
 HashTable * creerTableHachage(int _size);
 void detruireTableHachage(HashTable ** _hashTable);
-long convertirChEntier(const char * _word);
+unsigned long convertirChEntier(const char * _word);
 
-int hachage(long _k, const HashTable * _hashTable);
+int hachage(unsigned long _k, const HashTable * _hashTable);
 
 void insererHachage(HashTable * _hashTable, Cell * _cell);
 Cell * rechercherHachage(HashTable * _hashTable, char * _word);

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "outilsListe.h"
 
 List * creerListe()
 {
@@ -25,7 +26,6 @@ void detruireListe(List ** _list)
 
 void inserer(List * _list, Cell * _cell)
 {
-
 	_cell->next = _list->cell;
 	if (_list->cell != NULL)
 	{
@@ -38,15 +38,13 @@ void inserer(List * _list, Cell * _cell)
 
 Cell * rechercher(List * _list, char * _word)
 {
-	printf("Recherche du mot \n");
 	Cell * cell = NULL;
-	if(_list == NULL)
-		printf("NULL\n");
 	cell = _list->cell;
-	while(cell != NULL && strcmp(cell->word, _word)) /*strcmp renvoie 0 si égale, <0 si arg1<arg2, >0 si arg1>arg2*/
+	while(cell != NULL && strcmp(cell->word, _word))
 	{
 		cell = cell->next;
 	}
+	
 	return cell;
 }
 

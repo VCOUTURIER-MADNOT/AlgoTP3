@@ -1,10 +1,10 @@
 #ifndef DEF_CELLULE
 #define DEF_CELLULE
 
-	typedef struct
+	typedef struct Cell1
 	{
-		struct Cell * previous;
-		struct Cell * next;
+		struct Cell1 * previous;
+		struct Cell1 * next;
 		char * word;
 	} Cell;
 

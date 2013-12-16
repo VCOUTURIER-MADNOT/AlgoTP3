@@ -95,24 +95,24 @@ int saisieListeUtil(List * _list)
 	return resultat;
 }
 
-int lectureFichier(List * _list, const char * _fileName)
+int lectureFichier(List ** _list, const char * _fileName)
 {
 	int i = 1;
 	FILE * file = NULL;
 	char * word = (char *)malloc(sizeof(char) * 50);
 	Cell * cell = NULL;
 
-	_list = creerListe();
+	(*_list) = creerListe();
 	if( (file = fopen(_fileName, "r")) == NULL)
 		return 0;
 
 	while(i)
 	{
 		i = (fscanf(file, "%s", word) != EOF);
-		cell = rechercher(_list, word);
+		cell = rechercher((*_list), word);
 		if (cell == NULL){
 			cell = creerCellule(word, 50);
-			inserer(_list, cell);
+			inserer((*_list), cell);
 		}
 	}
 	fclose(file);

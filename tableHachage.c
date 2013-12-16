@@ -1,5 +1,6 @@
 #include "tableHachage.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include "liste.h"
@@ -32,12 +33,12 @@ void detruireTableHachage(HashTable ** _hashTable)
 	free(_hashTable);
 }
 
-long convertirChEntier(const char * _word)
+unsigned long convertirChEntier(const char * _word)
 {
 	int i, j, c = 0;
-
+	unsigned long res = 0;
 	j = 0;
-	long res = 0;
+	
 
 	for(i = strlen(_word)-1; i >= 0; i--, j++)
 	{
@@ -48,7 +49,7 @@ long convertirChEntier(const char * _word)
 	return res;
 }
 
-int hachage(long _k, const HashTable * _hashTable)
+int hachage(unsigned long _k, const HashTable * _hashTable)
 {
 	return _k % _hashTable->size;
 }

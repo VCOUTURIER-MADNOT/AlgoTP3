@@ -5,29 +5,38 @@
 #include "liste.h"
 #include "outilsListe.h"
 #include "tableHachage.h"
+#include "outilsTableHachage.h"
 
 int main()
 {
-	/*				Partie 1			*/
-	/*
+	char nom[50];
 	List * list = NULL;
-	list = (List*) malloc(sizeof(List));
-
-	if(lectureFichier(list, "dico_ae.txt"))
-	{
-		printf("\nIl y a %d mot(s) différent dans ce fichier", compterListe(list));
-	}
-	*/
-
-	/*				Partie 2			*/
-	/* */
 	HashTable * hashTable = NULL;
+
+	list = (List*) malloc(sizeof(List));
 	hashTable = (HashTable*) malloc(sizeof(HashTable));
 
-	if(lectureFichierTableHachage(hashTable, "texte1.txt"))
+	printf("Entrez le fichier à comparer : \n");
+	scanf("%50s", nom);
+	printf("Le fichier à comparer est : %s", nom);
+
+	/*				Partie 1			*/
+	printf("\nDébut de la comparaison avec une liste");
+	
+
+	if(lectureFichier(&list, nom))
 	{
-		printf("Taille après lecture %d :\n", hashTable->size);
-		printf("\nIl y a %d mot(s) différent dans ce fichier", compterTableHachage(hashTable));
+		printf("\nIl y a %d mot(s) différents dans ce fichier \n", compterListe(list));
+	}
+
+
+	/*				Partie 2			*/
+	printf("\nDébut de la comparaison avec une table de hachage");
+	
+
+	if(lectureFichierTableHachage(&hashTable, nom))
+	{
+		printf("\nIl y a %d mot(s) différents dans ce fichier\n", compterTableHachage(hashTable));
 	}
 	
 	return 0;
