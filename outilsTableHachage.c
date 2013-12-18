@@ -45,3 +45,29 @@ int compterTableHachage(HashTable * _hashTable)
 
 	return count;
 }
+
+void afficherTableHachage(HashTable* _hashTable)
+{
+	int i,j;
+	Cell* c = NULL;
+	printf("Affichage de la table de hachage :\n");
+
+	for(i = 0; i < _hashTable->size; i++)
+	{
+		printf("Indice %d de la table :\n", i);
+		if(_hashTable->array[i] != NULL)
+		{
+			j = 0;
+			c = _hashTable->array[i]->cell;
+			while(c != NULL){
+				printf("\tElement %d : %s \n", j++, c->word);
+				c=c->next;
+			}
+			printf("\n");
+		}
+		else
+		{
+			printf("\tIl n'y a pas d'élément à cet indice.\n");
+		}
+	}
+}

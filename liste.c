@@ -16,10 +16,6 @@ List * creerListe()
 
 void detruireListe(List ** _list)
 {
-
-	if ((*_list)->cell ==  NULL)
-		return;
-
 	detruireCellule(&(*_list)->cell);
 	free(*_list);
 }
@@ -29,8 +25,7 @@ void inserer(List * _list, Cell * _cell)
 	_cell->next = _list->cell;
 	if (_list->cell != NULL)
 	{
-		Cell * cell = _list->cell;
-		cell->previous = _cell;
+		_list->cell->previous = _cell;
 	}
 	_list->cell = _cell;
 	_cell->previous = NULL;

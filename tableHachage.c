@@ -27,7 +27,7 @@ void detruireTableHachage(HashTable ** _hashTable)
 	int i;
 	for (i = 0; i < (*_hashTable)->size; ++i)
 	{
-		detruireListe(&(*_hashTable)->array[i]);
+		detruireListe(&((*_hashTable)->array[i]));
 	}
 	free((*_hashTable)->array);
 	free(_hashTable);

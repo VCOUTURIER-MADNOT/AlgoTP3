@@ -1,45 +1,39 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include "cellule.h"
-#include "liste.h"
-#include "outilsListe.h"
-#include "tableHachage.h"
-#include "outilsTableHachage.h"
+#include <stdlib.h>
+#include "outilsSaisie.h"
+#include "outilsPresentation.h"
 
 int main()
 {
-	char nom[50];
-	List * list = NULL;
-	HashTable * hashTable = NULL;
-	int count;
-	list = (List*) malloc(sizeof(List));
-	hashTable = (HashTable*) malloc(sizeof(HashTable));
+	int choix;
 
-	printf("Entrez le fichier à comparer : \n");
-	scanf("%50s", nom);
-	printf("Le fichier à comparer est : %s", nom);
+	printf("/************************************************/ \n");
+	printf("\\*\t\t\t TP3 \t\t\t*\\\n");
+	printf("/************************************************/ \n");
 
-	/*				Partie 1			*/
-	printf("\nDébut de la comparaison avec une liste");
-	
+	printf("Choisissez ce que vous souhaitez faire : \n");
+	printf("\t1 - Comparer des fichiers\n");
+	printf("\t2 - Implementer une liste\n");
+	printf("\t3 - Implementer une table de hachage\n");
+	printf("\t0 - Quitter le programme\n");
 
-	if((count = lectureFichier(&list, nom)))
+	choix = choixInt(3);
+	printf("choix : %d\n", choix);
+	switch(choix)
 	{
-		printf("\nIl y a %d mot(s) dans ce fichier", count);
-		printf("\nIl y a %d mot(s) différents dans ce fichier \n", compterListe(list));
+		case 0:
+			printf("Au revoir !\n");
+			return 1;
+			break;
+		case 1:
+			comparaisonFichier(saisieNomFichier());
+			break;
+		case 2:
+			saisieListeUtil();
+			break;
+		case 3:
+			saisieTableHachage();
+			break;
 	}
-
-
-	/*				Partie 2			*/
-	printf("\nDébut de la comparaison avec une table de hachage");
-	
-
-	if((count = lectureFichierTableHachage(&hashTable, nom)))
-	{
-		printf("\nIl y a %d mot(s) dans ce fichier", count);
-		printf("\nIl y a %d mot(s) différents dans ce fichier\n", compterTableHachage(hashTable));
-	}
-	
-	return 0;
+	return 1;
 }
